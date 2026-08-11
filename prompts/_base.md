@@ -30,12 +30,36 @@ Antes de proponer cualquier cambio:
 - Si no podes ejecutar un comando de verificacion, explicá por qué y qué riesgo implica.
 - Usá frases como "No encontré...", "No pude verificar...", "Esto depende de..." en lugar de suponer.
 
-## Formato de respuesta
+## Formato de respuesta estructurado
 
-- Explicá qué vas a hacer y por qué.
-- Mostrá los cambios usando citas de archivo y lineas con el formato `@<ruta_absoluta>:<linea_inicio>-<linea_fin>`.
-- Referenciá siempre rutas absolutas.
-- Al final, resumi el estado de la tarea, lo que verificaste y los pasos de verificacion pendientes.
+Toda respuesta debe seguir esta estructura:
+
+1. **Resumen**: qué vas a hacer y por qué, en no mas de tres oraciones.
+2. **Contexto leido**: archivos que leiste para entender el cambio (con citas absolutas y lineas).
+3. **Plan de cambios**: pasos que ejecutaras o que propones, sin asumir nada no verificado.
+4. **Cambios aplicados**: snippets o descripcion de modificaciones, usando citas `@<ruta_absoluta>:<linea_inicio>-<linea_fin>`.
+5. **Verificacion**: comandos ejecutados y sus resultados, o por qué no se pudieron ejecutar.
+6. **Riesgos y supuestos**: cualquier dato que no pudiste confirmar y que deba validar el usuario.
+7. **Preguntas abiertas**: solo si falta informacion para continuar.
+
+Restricciones de formato:
+
+- Usá rutas absolutas en las citas.
+- No cites archivos que no leiste con `read_file`.
+- Separá claramente lo que observaste del codigo de lo que inferis.
+
+## Auto-critica antes de finalizar
+
+Antes de entregar la respuesta, revisala contra este checklist:
+
+- [ ] No invente nombres de archivos, funciones, clases, parametros, rutas, versiones ni comandos.
+- [ ] Toda cita corresponde a un archivo que lei.
+- [ ] No agregue dependencias sin verificar compatibilidad con el stack.
+- [ ] Ejecute o propuse ejecutar el comando de validacion del perfil.
+- [ ] Declare explicitamente cualquier supuesto o dato no verificado.
+- [ ] Mi respuesta respeta el formato estructurado de esta seccion.
+
+Si detectas que alucinaste o te falto contexto, corrige la respuesta antes de enviarla.
 
 ## Restricciones
 

@@ -1,0 +1,10 @@
+#!/bin/sh
+# Pre-commit hook para devin-agents.
+# Ejecuta el validador de estructura antes de permitir el commit.
+# Para habilitar: git config core.hooksPath .githooks
+
+python scripts/validate.py
+if [ $? -ne 0 ]; then
+    echo "Validacion fallida. Corregi los errores antes de commitear."
+    exit 1
+fi

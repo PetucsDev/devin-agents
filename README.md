@@ -72,6 +72,18 @@ pip install pyyaml
 python scripts/validate.py
 ```
 
+### Hook de pre-commit
+
+El repositorio incluye un hook en `.githooks/pre-commit` que ejecuta el validador antes de cada commit.
+
+Para activarlo:
+
+```bash
+git config core.hooksPath .githooks
+```
+
+A partir de entonces, si `scripts/validate.py` falla, el commit se bloquea.
+
 ## Seguridad
 
 - No incluir secretos, tokens ni credenciales en los prompts.
