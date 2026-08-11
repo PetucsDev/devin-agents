@@ -85,10 +85,12 @@ def validate_yaml_config() -> list[str]:
                 )
             else:
                 for item in spec["evidence"]:
-                    if not isinstance(item, dict) or "file" not in item or "must_contain" not in item:
+                    if not isinstance(item, dict) or "file" not in item:
                         errors.append(
                             f"config/default.yaml: evidencia de '{name}' invalida: {item}"
                         )
+                    # Se permite evidencia basada solo en existencia de archivo,
+                    # o con must_contain / must_not_contain adicionales.
     return errors
 
 

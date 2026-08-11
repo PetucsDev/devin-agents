@@ -12,10 +12,11 @@ Proporcionar prompts, perfiles de stack y conocimiento compartido que cualquier 
 - `profiles/`: configuraciones especificas por stack tecnologico.
 - `knowledge/`: guias de arquitectura, testing, errores comunes, guardrails contra alucinaciones y registro de fallos.
 - `examples/`: ejemplos de interacciones para calibrar respuestas, incluyendo casos negativos.
-- `evals/`: escenarios de evaluacion para medir alucinaciones.
+- `evals/`: escenarios de evaluacion para medir alucinaciones (`hallucination-benchmark.md` y `hallucination-benchmark.yaml`).
 - `config/default.yaml`: configuracion por defecto con deteccion de stack por dependencias.
 - `scripts/`: herramientas de validacion de la estructura del repo.
 - `.github/workflows/`: CI que ejecuta las validaciones.
+- `project-template/`: plantillas de `.ai-agents.yaml` por stack.
 
 ## Como usarlo en un proyecto
 
@@ -47,12 +48,35 @@ agents:
 git clone https://github.com/<tu-cuenta>/devin-agents.git ~/.devin-agents
 ```
 
+## Perfiles soportados
+
+Actualmente existen perfiles para:
+
+- `java-spring-boot`
+- `nodejs-nestjs`
+- `nodejs-express`
+- `python-fastapi`
+- `python-django`
+- `python-flask`
+- `go-gin`
+
+Cada uno incluye comandos de validacion, archivos de verificacion obligatoria, convenciones y anti-patrones.
+
+## Plantillas por stack
+
+En `project-template/` hay una plantilla de `.ai-agents.yaml` por cada perfil soportado. Copia la que corresponda a tu proyecto y ajustala:
+
+```bash
+cp project-template/java-spring-boot/.ai-agents.yaml /ruta-de-tu-proyecto/.ai-agents.yaml
+```
+
 ## Como agregar un perfil de stack
 
 1. Crear `profiles/<stack>.md`.
 2. Describir lenguaje, framework, build tool, test framework, comandos de validacion, archivos de verificacion obligatoria, convenciones y anti-patrones.
-3. Referenciarlo desde `.ai-agents.yaml` del proyecto.
-4. Ejecutar `python scripts/validate.py` (requiere `pyyaml`) para verificar que el perfil cumple la estructura minima.
+3. Agregar la deteccion correspondiente en `config/default.yaml`.
+4. Agregar una plantilla en `project-template/<stack>/.ai-agents.yaml`.
+5. Ejecutar `python scripts/validate.py` (requiere `pyyaml`) para verificar que el perfil cumple la estructura minima.
 
 ## Validacion
 
@@ -83,6 +107,14 @@ git config core.hooksPath .githooks
 ```
 
 A partir de entonces, si `scripts/validate.py` falla, el commit se bloquea.
+
+### Benchmark de alucinaciones
+
+En `evals/hallucination-benchmark.yaml` hay casos de evaluacion estructurados. El script `scripts/run_benchmark.py` verifica el contexto de cada caso y genera un reporte JSON. Para evaluar respuestas de un modelo real, el script debe extenderse con la invocacion al LLM correspondiente.
+
+```bash
+python scripts/run_benchmark.py --repo /ruta/a/repo/de/prueba --output reporte.json
+```
 
 ## Seguridad
 

@@ -1,0 +1,21 @@
+# Plantilla de configuracion para proyectos Python + FastAPI
+agents_repo: https://github.com/<tu-cuenta>/devin-agents
+profile: python-fastapi
+
+enabled_agents:
+  - backend
+  - testing
+  - devops
+  - qa
+
+project:
+  name: nombre-del-proyecto
+  description: Breve descripcion del proyecto
+  architecture: layered
+
+verification_files:
+  - README.md
+  - pyproject.toml
+  - requirements.txt
+  - pytest.ini
+  - setup.cfg

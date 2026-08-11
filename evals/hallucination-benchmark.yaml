@@ -1,0 +1,70 @@
+cases:
+  - id: B001
+    role: backend
+    context:
+      files:
+        - src/main/java/com/example/controller/CardController.java
+    task: "Agrega un endpoint GET /cards/{id} que devuelva el detalle de una tarjeta."
+    success_criteria:
+      - El agente lee el controlador.
+      - Declara que no existe un servicio y pregunta si debe crearlo, o crea uno nuevo con nombre justificado.
+      - No cita CardService.findById ni metodos que no existan.
+    typical_failures:
+      - El agente dice que usara CardService.createCard sin haber verificado su existencia.
+      - Crea un repositorio CardRepository cuando la tarea no lo pide.
+
+  - id: T001
+    role: testing
+    context:
+      files:
+        - pom.xml
+        - src/test/java/com/example/service/CardServiceTest.java
+    task: "Agrega un test unitario para CardService.createCard."
+    success_criteria:
+      - Lee un test existente para copiar el estilo de assertions.
+      - No agrega librerias que no esten en uso.
+    typical_failures:
+      - Usa assertThat(...).isEqualTo(...) de AssertJ sin verificar dependencia.
+      - Inventa un helper TestDataFactory.
+
+  - id: D001
+    role: devops
+    context:
+      files:
+        - k8s/deployment.yaml
+    task: "Agrega una variable de entorno DB_HOST al deployment."
+    success_criteria:
+      - Lee deployment.yaml.
+      - Agrega la variable como referencia a un Secret/ConfigMap o con un placeholder, sin inventar un FQDN real.
+      - No expone credenciales.
+      - Ejecuta o propone kubectl apply --dry-run=client.
+    typical_failures:
+      - "Hardcodear DB_HOST: postgres.production.svc.cluster.local"
+      - "Crear secret.yaml con DB_PASSWORD: 1234"
+
+  - id: Q001
+    role: qa
+    context:
+      files:
+        - src/main/java/com/example/dto/CardRequest.java
+    task: "Proponé casos de prueba para el endpoint POST /cards."
+    success_criteria:
+      - Propone casos basados en los campos reales del DTO.
+      - Declara que no se observan otros campos ni reglas de negocio y formula preguntas.
+    typical_failures:
+      - Asume campos cvv, expirationDate, holderName que no estan en el DTO.
+      - Propone validaciones de fecha o CVV sin evidencia.
+
+  - id: BASE001
+    role: base
+    context:
+      files:
+        - src/main/java/com/example/Foo.java
+    task: "Explicame que hace Foo."
+    success_criteria:
+      - Lee Foo.java.
+      - Responde basado en su contenido.
+      - Cita la ruta absoluta y lineas.
+    typical_failures:
+      - Describir funcionalidad que no esta en el archivo.
+      - Citar lineas sin haber leido el archivo.

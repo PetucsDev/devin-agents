@@ -15,3 +15,11 @@ Thumbs.db
 
 # Logs
 *.log
+
+# Reportes de benchmark
+evals/reporte.json
+evals/*.json
+
+# Python
+__pycache__/
+*.pyc

@@ -1,0 +1,19 @@
+# Plantilla de configuracion para proyectos Go + Gin
+agents_repo: https://github.com/<tu-cuenta>/devin-agents
+profile: go-gin
+
+enabled_agents:
+  - backend
+  - testing
+  - devops
+  - qa
+
+project:
+  name: nombre-del-proyecto
+  description: Breve descripcion del proyecto
+  architecture: layered
+
+verification_files:
+  - README.md
+  - go.mod
+  - main.go

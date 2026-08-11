@@ -22,14 +22,44 @@ stack_detection:
       evidence:
         - file: package.json
           must_contain: "@nestjs/core"
+    nodejs-express:
+      evidence:
+        - file: package.json
+          must_contain: express
+          must_not_contain: "@nestjs/core"
     python-fastapi:
       evidence:
         - file: requirements.txt
           must_contain: fastapi
+          must_not_contain: django
         - file: pyproject.toml
           must_contain: fastapi
+          must_not_contain: django
         - file: poetry.lock
           must_contain: fastapi
+    python-django:
+      evidence:
+        - file: requirements.txt
+          must_contain: django
+        - file: pyproject.toml
+          must_contain: django
+        - file: poetry.lock
+          must_contain: django
+        - file: manage.py
+    python-flask:
+      evidence:
+        - file: requirements.txt
+          must_contain: flask
+          must_not_contain:
+            - django
+            - fastapi
+        - file: pyproject.toml
+          must_contain: flask
+          must_not_contain:
+            - django
+            - fastapi
+        - file: poetry.lock
+          must_contain: flask
     go-gin:
       evidence:
         - file: go.mod

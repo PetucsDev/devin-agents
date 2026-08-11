@@ -1,0 +1,20 @@
+# Plantilla de configuracion para proyectos Node.js + NestJS
+agents_repo: https://github.com/<tu-cuenta>/devin-agents
+profile: nodejs-nestjs
+
+enabled_agents:
+  - backend
+  - testing
+  - devops
+  - qa
+
+project:
+  name: nombre-del-proyecto
+  description: Breve descripcion del proyecto
+  architecture: modular
+
+verification_files:
+  - README.md
+  - package.json
+  - tsconfig.json
+  - jest.config.js
