@@ -1,0 +1,17 @@
+# Entorno
+.env
+.env.*
+*.local
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs
+*.log

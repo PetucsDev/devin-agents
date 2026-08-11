@@ -1,0 +1,16 @@
+# Configuracion de agentes para un proyecto especifico
+# Copiar este archivo a la raiz del repositorio de tu proyecto como .ai-agents.yaml
+
+agents_repo: https://github.com/<tu-cuenta>/devin-agents
+profile: java-spring-boot
+
+enabled_agents:
+  - backend
+  - testing
+  - devops
+  - qa
+
+project:
+  name: nombre-del-proyecto
+  description: Breve descripcion del proyecto
+  architecture: hexagonal|layered|ddd|microservicios
