@@ -23,6 +23,17 @@ Este perfil se activa si existe `pom.xml` o `build.gradle` con dependencias de S
 - Build de imagen: `docker build -t <imagen> .`
 - Terraform: `terraform plan` dentro de la carpeta de infra correspondiente.
 
+## Archivos de verificacion obligatoria
+
+Antes de proponer cambios, lee y considera:
+
+- `README.md` y `.ai-agents.yaml`.
+- `pom.xml` o `build.gradle` (versiones de Spring Boot, dependencias, plugins).
+- `src/main/resources/application.yml` o `application.properties`.
+- Estructura de paquetes bajo `src/main/java`.
+- Tests de referencia bajo `src/test/java`.
+- No inventes nombres de beans, propiedades de configuracion ni dependencias que no aparezcan en estos archivos.
+
 ## Convenciones
 
 - Estructura de paquetes por feature o por capa, segun el proyecto.

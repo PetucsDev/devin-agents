@@ -8,17 +8,29 @@ enabled_agents:
   - devops
   - qa
 
+# La deteccion de stack debe inspeccionar dependencias reales, no solo nombres de archivo.
+# Un mismo archivo (package.json, pyproject.toml, go.mod) puede corresponder a multiples stacks.
 stack_detection:
-  files:
-    - name: pom.xml
-      profile: java-spring-boot
-    - name: build.gradle
-      profile: java-spring-boot
-    - name: package.json
-      profile: nodejs-nestjs
-    - name: requirements.txt
-      profile: python-fastapi
-    - name: pyproject.toml
-      profile: python-fastapi
-    - name: go.mod
-      profile: go-gin
+  profiles:
+    java-spring-boot:
+      evidence:
+        - file: pom.xml
+          must_contain: spring-boot
+        - file: build.gradle
+          must_contain: spring-boot
+    nodejs-nestjs:
+      evidence:
+        - file: package.json
+          must_contain: "@nestjs/core"
+    python-fastapi:
+      evidence:
+        - file: requirements.txt
+          must_contain: fastapi
+        - file: pyproject.toml
+          must_contain: fastapi
+        - file: poetry.lock
+          must_contain: fastapi
+    go-gin:
+      evidence:
+        - file: go.mod
+          must_contain: github.com/gin-gonic/gin

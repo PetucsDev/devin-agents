@@ -20,6 +20,18 @@ Se activa con `package.json` que contenga `@nestjs/core`.
 - Tests: `npm test`
 - Build: `npm run build`
 - Lint: `npm run lint`
+- Si el proyecto usa scripts custom (ej. `test:integration`, `test:e2e`), usalos segun `package.json`.
+
+## Archivos de verificacion obligatoria
+
+Antes de proponer cambios, lee y considera:
+
+- `README.md` y `.ai-agents.yaml`.
+- `package.json` (scripts, versiones de NestJS, dependencias de testing).
+- `tsconfig.json`.
+- Configuracion de Jest (`jest.config.js`, `jest` en `package.json` o archivos de preset).
+- Estructura bajo `src/`.
+- No inventes modulos, providers ni nombres de dependencias que no aparezcan en estos archivos.
 
 ## Convenciones
 

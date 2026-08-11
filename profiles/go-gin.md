@@ -20,6 +20,16 @@ Se activa con `go.mod` que contenga `github.com/gin-gonic/gin`.
 - Lint: `golangci-lint run`
 - Format: `gofmt -w .`
 
+## Archivos de verificacion obligatoria
+
+Antes de proponer cambios, lee y considera:
+
+- `README.md` y `.ai-agents.yaml`.
+- `go.mod` y `go.sum` (version de Go, dependencias).
+- Entrypoint principal (`main.go`, `cmd/`).
+- Estructura de paquetes y `_test.go` existentes.
+- No inventes handlers, servicios, tipos ni dependencias que no aparezcan en estos archivos.
+
 ## Convenciones
 
 - Handlers delegan a servicios.

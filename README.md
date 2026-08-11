@@ -10,9 +10,9 @@ Proporcionar prompts, perfiles de stack y conocimiento compartido que cualquier 
 
 - `prompts/`: system prompts base y especializados por rol.
 - `profiles/`: configuraciones especificas por stack tecnologico.
-- `knowledge/`: guias de arquitectura, testing y errores comunes.
-- `examples/`: ejemplos de interacciones para calibrar respuestas.
-- `config/default.yaml`: configuracion por defecto.
+- `knowledge/`: guias de arquitectura, testing, errores comunes y guardrails contra alucinaciones.
+- `examples/`: ejemplos de interacciones para calibrar respuestas, incluyendo casos negativos.
+- `config/default.yaml`: configuracion por defecto con deteccion de stack por dependencias.
 
 ## Como usarlo en un proyecto
 
